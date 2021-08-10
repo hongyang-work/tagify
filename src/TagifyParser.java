@@ -3,7 +3,7 @@ import com.google.gson.JsonSyntaxException;
 
 import java.util.Stack;
 
-public class TagifyParser {
+public class TagifyParser implements Parser {
 
     private static final TagifyParser INSTANCE = new TagifyParser();
 
