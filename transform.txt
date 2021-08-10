@@ -1,0 +1,13 @@
+const input1 = "hello @value @value";
+const input2 = [{start: 13, end: 19}, {start: 6, end: 12}]
+
+const transform = (text: string, ranges: Range[]) => {
+    for (const range of ranges) {
+        const tag = {
+            value: text.substring(range.start + 1, range.end),
+            prefix:  text.charAt(range.start)
+        };
+        text = text.substring(0, range.start) + '[[' + JSON.stringify(tag) + ']]' + text.substring(range.end);
+    }
+    return text;
+}
