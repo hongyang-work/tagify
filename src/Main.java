@@ -8,17 +8,16 @@ public class Main {
     public static void main(String[] args) {
         testCases.forEach((key, value) -> {
             String i = value.get("input");
-            String o = new Tagify(i).getProcessedText();
+            Tagify tagify = new Tagify(i);
+            String o = tagify.getProcessedText();
             String e = value.get("expected");
 
-            if (!o.equals(e)) {
-                System.out.println("Test case " + key);
-                System.out.println("input:\t\t" + i);
-                System.out.println("output:\t\t" + o);
-                System.out.println("expected:\t" + e);
-                System.out.println("status\t\tFAIL");
-                System.out.println();
-            }
+            System.out.println("Test case " + key);
+            System.out.println("input:\t\t" + i);
+            System.out.println("output:\t\t" + o);
+            System.out.println("expected:\t" + e);
+            System.out.println("status\t\t" + (o.equals(e) ? "PASS" : "FAIL"));
+            System.out.println();
         });
     }
 
