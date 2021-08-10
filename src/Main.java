@@ -11,13 +11,16 @@ public class Main {
             Tagify tagify = new Tagify(i);
             String o = tagify.getProcessedText();
             String e = value.get("expected");
+            String s = o.equals(e) ? "PASS" : "FAIL";
 
-            System.out.println("Test case " + key);
-            System.out.println("input:\t\t" + i);
-            System.out.println("output:\t\t" + o);
-            System.out.println("expected:\t" + e);
-            System.out.println("status\t\t" + (o.equals(e) ? "PASS" : "FAIL"));
-            System.out.println();
+            if (s.equals("FAIL")) {
+                System.out.println("Test case " + key);
+                System.out.println("input:\t\t" + i);
+                System.out.println("output:\t\t" + o);
+                System.out.println("expected:\t" + e);
+                System.out.println("status\t\t" + s);
+                System.out.println();
+            }
         });
     }
 
@@ -152,6 +155,11 @@ public class Main {
         testCases.put(25, new HashMap<String, String>() {{
             put("input", "the [[{\"value\": \"quick\", \"prefix\": \"@\"}]] brown fox [[{\"value\": \"jumps\", \"prefix\": \"@\"}]] over the [[{\"value\": \"lazy\", \"prefix\": \"@\"}]] dog");
             put("expected", "the @quick brown fox @jumps over the @lazy dog");
+        }});
+
+        testCases.put(26, new HashMap<String, String>() {{
+            put("input", "there are no tags in this string");
+            put("expected", "there are no tags in this string");
         }});
     }
 }
