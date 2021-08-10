@@ -13,12 +13,15 @@ public class TagifyParser {
         return INSTANCE;
     }
 
-    // iterate from the end of the array and jump backwards
     public String parse(String s) {
         if (s == null) return "";
-
-        StringBuilder message = new StringBuilder();
         int[] dp = locateTags(s);
+        return parse(s, dp);
+    }
+
+    // iterate from the end of the array and jump backwards
+    public String parse(String s, int[] dp) {
+        StringBuilder message = new StringBuilder();
         int i = s.length() - 1;
 
         while (i >= 0) {

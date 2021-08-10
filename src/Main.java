@@ -5,7 +5,7 @@ public class Main {
         String output;
         String expected;
 
-        System.out.println("Test case 0A");
+        System.out.println("Test case 0");
         input = "";
         output = tagifyParser.parse(input);
         expected = "";
@@ -27,6 +27,7 @@ public class Main {
 
         System.out.println("Test case 2");
         input = "[[{\"value\": \"value\", \"prefix\": \"@\"}]]";
+        System.out.println(new TagifyString(input).getProcessedText());
         output = tagifyParser.parse(input);
         expected = "@value";
         System.out.println("input:\t\t" + input);

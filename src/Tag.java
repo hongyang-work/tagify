@@ -8,16 +8,8 @@ public class Tag {
         return prefix;
     }
 
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
     public String getValue() {
         return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
     }
 
     @Override
@@ -31,5 +23,10 @@ public class Tag {
     @Override
     public int hashCode() {
         return Objects.hash(prefix, value);
+    }
+
+    @Override
+    public String toString() {
+        return this.prefix + this.value;
     }
 }
