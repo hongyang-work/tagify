@@ -22,8 +22,7 @@ public class Range {
         if (this == range) return true;
         if (!(range instanceof Range)) return false;
         Range that = (Range) range;
-        return this.start == that.start &&
-                this.end == that.end;
+        return this.start == that.start && this.end == that.end;
     }
 
     @Override

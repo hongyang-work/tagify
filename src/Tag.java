@@ -26,8 +26,10 @@ public class Tag {
         if (tag == this) return true;
         if (!(tag instanceof Tag)) return false;
         Tag that = (Tag) tag;
-        boolean isEquals = this.prefix.equals(that.prefix) && this.value.equals(that.value);
-        return  range == null ? isEquals : isEquals && this.range.equals(that.range);
+        boolean isEqualPrefix = this.prefix.equals(that.prefix);
+        boolean isEqualValue = this.value.equals(that.value);
+        boolean isEqualRange = this.range.equals(that.range);
+        return  isEqualPrefix && isEqualValue && isEqualRange;
     }
 
     @Override
