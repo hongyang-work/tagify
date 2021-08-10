@@ -4,7 +4,7 @@ import com.google.gson.JsonSyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TagifyString {
+public class Tagify {
 
     private final TagifyParser tagifyParser = TagifyParser.getInstance();
     private int[] locations;
@@ -15,7 +15,7 @@ public class TagifyString {
     private String processedText;
 
 
-    public TagifyString(String rawText) {
+    public Tagify(String rawText) {
         this.rawText = rawText;
         this.tags = new HashMap<>();
         process();

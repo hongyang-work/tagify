@@ -6,18 +6,19 @@ public class Main {
     public static Map<Integer, Map<String, String>> testCases;
 
     public static void main(String[] args) {
-        TagifyParser tagifyParser = TagifyParser.getInstance();
         testCases.forEach((key, value) -> {
             String i = value.get("input");
-            String o = tagifyParser.parse(i);
+            String o = new Tagify(i).getProcessedText();
             String e = value.get("expected");
 
-            System.out.println("Test case " + key);
-            System.out.println("input:\t\t" + i);
-            System.out.println("output:\t\t" + o);
-            System.out.println("expected:\t" + e);
-            System.out.println("status\t\t" + (o.equals(e) ? "PASS" : "FAIL"));
-            System.out.println();
+            if (!o.equals(e)) {
+                System.out.println("Test case " + key);
+                System.out.println("input:\t\t" + i);
+                System.out.println("output:\t\t" + o);
+                System.out.println("expected:\t" + e);
+                System.out.println("status\t\tFAIL");
+                System.out.println();
+            }
         });
     }
 

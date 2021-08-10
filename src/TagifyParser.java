@@ -14,13 +14,14 @@ public class TagifyParser {
     }
 
     public String parse(String s) {
-        if (s == null) return "";
         int[] dp = locateTags(s);
         return parse(s, dp);
     }
 
     // iterate from the end of the array and jump backwards
     public String parse(String s, int[] dp) {
+        if (s == null) return "";
+
         StringBuilder message = new StringBuilder();
         int i = s.length() - 1;
 
@@ -70,6 +71,8 @@ public class TagifyParser {
     // memoize at each index to keep track of the length the tag
     // stack to keep track of nested opening and closing
     public int[] locateTags(String s) {
+        if (s == null) return new int[0];
+
         int[] dp = new int[s.length()];
         Stack<Integer> stack = new Stack<>();
 
