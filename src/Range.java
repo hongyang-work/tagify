@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Range {
     private final int start;
     private final int end;
@@ -13,5 +15,24 @@ public class Range {
 
     public int getEnd() {
         return end;
+    }
+
+    @Override
+    public boolean equals(Object range) {
+        if (this == range) return true;
+        if (!(range instanceof Range)) return false;
+        Range that = (Range) range;
+        return this.start == that.start &&
+                this.end == that.end;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.start, this.end);
+    }
+
+    @Override
+    public String toString() {
+        return "Start: " + start + ", End: " + end;
     }
 }
