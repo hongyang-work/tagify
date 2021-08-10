@@ -5,11 +5,11 @@ public class Tag {
     private String value;
 
     public String getPrefix() {
-        return prefix;
+        return this.prefix;
     }
 
     public String getValue() {
-        return value;
+        return this.value;
     }
 
     @Override
