@@ -27,137 +27,137 @@ public class Main {
     static {
         testCases = new TreeMap<>();
 
-        testCases.put(0, new HashMap<String, String>() {{
+        testCases.put(0, new HashMap<>() {{
             put("input", "");
             put("expected", "");
         }});
 
-        testCases.put(1, new HashMap<String, String>() {{
+        testCases.put(1, new HashMap<>() {{
             put("input", null);
             put("expected", "");
         }});
 
-        testCases.put(2, new HashMap<String, String>() {{
+        testCases.put(2, new HashMap<>() {{
             put("input", "[[{\"value\": \"value\", \"prefix\": \"@\"}]]");
             put("expected", "@value");
         }});
 
-        testCases.put(3, new HashMap<String, String>() {{
+        testCases.put(3, new HashMap<>() {{
             put("input", "[[{\"value\": \"value\", \"prefix\": \"@\"}]] [[{\"value\": \"value\", \"prefix\": \"@\"}]]");
             put("expected", "@value @value");
         }});
 
-        testCases.put(4, new HashMap<String, String>() {{
+        testCases.put(4, new HashMap<>() {{
             put("input", "[[{\"value\": \"value\", \"prefix\": \"@\"}]][[{\"value\": \"value\", \"prefix\": \"@\"}]]");
             put("expected", "@value@value");
         }});
 
-        testCases.put(5, new HashMap<String, String>() {{
+        testCases.put(5, new HashMap<>() {{
             put("input", "hello[[{\"value\": \"value\", \"prefix\": \"@\"}]]hello");
             put("expected", "hello@valuehello");
         }});
 
-        testCases.put(6, new HashMap<String, String>() {{
+        testCases.put(6, new HashMap<>() {{
             put("input", "hello [[{\"value\": \"test\", \"prefix\": \"@\"}]] hello [[{\"value\": \"value\", \"prefix\": \"@\"}]]");
             put("expected", "hello @test hello @value");
         }});
 
-        testCases.put(7, new HashMap<String, String>() {{
+        testCases.put(7, new HashMap<>() {{
             put("input", "[[{\"value\": \"\\\"}]]\", \"prefix\": \"@\"}]] [[{\"aaa\"}]]");
             put("expected", "@\"}]] [[{\"aaa\"}]]");
         }});
 
-        testCases.put(8, new HashMap<String, String>() {{
+        testCases.put(8, new HashMap<>() {{
             put("input", "[[{\"value\": \"[[{\\\"\", \"prefix\": \"@\"}]] [[{\"aaa\"}]]");
             put("expected", "@[[{\" [[{\"aaa\"}]]");
         }});
 
-        testCases.put(9, new HashMap<String, String>() {{
+        testCases.put(9, new HashMap<>() {{
             put("input", "[[{\"value\": \"[[{\\\"\", \"prefix\": \"@\"}]] [[{\"aaa\"}]]\"}]]");
             put("expected", "@[[{\" [[{\"aaa\"}]]\"}]]");
         }});
 
-        testCases.put(10, new HashMap<String, String>() {{
+        testCases.put(10, new HashMap<>() {{
             put("input", "[[{\"value\": \"[[{\\\"\", \"prefix\": \"@\"}]] [[{\"[[{\"aaa\"}]]");
             put("expected", "@[[{\" [[{\"[[{\"aaa\"}]]");
         }});
 
-        testCases.put(11, new HashMap<String, String>() {{
+        testCases.put(11, new HashMap<>() {{
             put("input", "[[{\"value\": \"[[{\\\"value\\\": \\\"value\\\", \\\"prefix\\\": \\\"@\\\"}]]\", \"prefix\": \"@\"}]]");
             put("expected", "@[[{\"value\": \"value\", \"prefix\": \"@\"}]]");
         }});
 
-        testCases.put(12, new HashMap<String, String>() {{
+        testCases.put(12, new HashMap<>() {{
             put("input", "[[[[{\"value\": \"value\", \"prefix\": \"@\"}]]]]");
             put("expected", "[[@value]]");
         }});
 
-        testCases.put(13, new HashMap<String, String>() {{
+        testCases.put(13, new HashMap<>() {{
             put("input", "[[{\" [[{\"value\":\"value\",\"prefix\":\"@\"}]] \"}]]");
             put("expected", "[[{\" @value \"}]]");
         }});
 
-        testCases.put(14, new HashMap<String, String>() {{
+        testCases.put(14, new HashMap<>() {{
             put("input", "[[{\" [[{\"value\":\"\\\"value\\\"\",\"prefix\":\"@\"}]] \"}]]");
             put("expected", "[[{\" @\"value\" \"}]]");
         }});
 
-        testCases.put(15, new HashMap<String, String>() {{
+        testCases.put(15, new HashMap<>() {{
             put("input", "[[{\"value\":\"value\",\"prefix\":\"@\"}]] \"}]]");
             put("expected", "@value \"}]]");
         }});
 
-        testCases.put(16, new HashMap<String, String>() {{
+        testCases.put(16, new HashMap<>() {{
             put("input", "[[{\" [[{\"value\":\"value\",\"prefix\":\"@\"}]]");
             put("expected", "[[{\" @value");
         }});
 
-        testCases.put(17, new HashMap<String, String>() {{
+        testCases.put(17, new HashMap<>() {{
             put("input", "[[{\"[[{\" [[{\"value\":\"\\\"value\\\"\",\"prefix\":\"@\"}]] \"}]]");
             put("expected", "[[{\"[[{\" @\"value\" \"}]]");
         }});
 
-        testCases.put(18, new HashMap<String, String>() {{
+        testCases.put(18, new HashMap<>() {{
             put("input", "[[{\" [[{\"value\":\"\\\"value\\\"\",\"prefix\":\"@\"}]] \"}]] \"}]]");
             put("expected", "[[{\" @\"value\" \"}]] \"}]]");
         }});
 
-        testCases.put(19, new HashMap<String, String>() {{
+        testCases.put(19, new HashMap<>() {{
             put("input", "[[{\" [[{\"value\": \"[[{\\\"value\\\": \\\"value\\\", \\\"prefix\\\": \\\"@\\\"}]]\", \"prefix\":\"@\"}]] \"}]]");
             put("expected", "[[{\" @[[{\"value\": \"value\", \"prefix\": \"@\"}]] \"}]]");
         }});
 
-        testCases.put(20, new HashMap<String, String>() {{
+        testCases.put(20, new HashMap<>() {{
             put("input", " [[{\" [[{\"value\": \"value\\\"}]]\\\"}]]\", \"prefix\": \"@\"}]] \"}]]");
             put("expected", " [[{\" @value\"}]]\"}]] \"}]]");
         }});
 
-        testCases.put(21, new HashMap<String, String>() {{
+        testCases.put(21, new HashMap<>() {{
             put("input", " [[{\" [[{\"value\": \"[[{\\\"[[{\\\"value\", \"prefix\": \"@\"}]] \"}]]");
             put("expected", " [[{\" @[[{\"[[{\"value \"}]]");
         }});
 
-        testCases.put(22, new HashMap<String, String>() {{
+        testCases.put(22, new HashMap<>() {{
             put("input", " [[{\"value\": \"[[{\\\"[[{\\\"value\\\"}]]\\\"}]]\", \"prefix\": \"@\"}]] \"}]]");
             put("expected", " @[[{\"[[{\"value\"}]]\"}]] \"}]]");
         }});
 
-        testCases.put(23, new HashMap<String, String>() {{
+        testCases.put(23, new HashMap<>() {{
             put("input", " [[{\" [[{\"value\": \"[[{\\\"value\\\"}]]\\\"}]]\", \"prefix\": \"@\"}]]");
             put("expected", " [[{\" @[[{\"value\"}]]\"}]]");
         }});
 
-        testCases.put(24, new HashMap<String, String>() {{
+        testCases.put(24, new HashMap<>() {{
             put("input", " [[{\"value\": \"[[{\\\"[[{\\\"value\\\"}]]\", \"prefix\": \"@\"}]] \"}]]");
             put("expected", " @[[{\"[[{\"value\"}]] \"}]]");
         }});
 
-        testCases.put(25, new HashMap<String, String>() {{
+        testCases.put(25, new HashMap<>() {{
             put("input", "the [[{\"value\": \"quick\", \"prefix\": \"@\"}]] brown fox [[{\"value\": \"jumps\", \"prefix\": \"@\"}]] over the [[{\"value\": \"lazy\", \"prefix\": \"@\"}]] dog");
             put("expected", "the @quick brown fox @jumps over the @lazy dog");
         }});
 
-        testCases.put(26, new HashMap<String, String>() {{
+        testCases.put(26, new HashMap<>() {{
             put("input", "there are no tags in this string");
             put("expected", "there are no tags in this string");
         }});
