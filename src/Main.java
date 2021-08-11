@@ -38,7 +38,7 @@ public class Main {
         }});
 
         testCases.put(2, new HashMap<String, String>() {{
-            put("input", "[[{\"value\": \"value\", \"prefix\": \"@\"}]]");
+            put("input", "[[{\"value\": \"value\", \"prefix\": \"@\", \"id\": \"id\", \"type\": \"type\"}]]");
             put("expected", "@value");
         }});
 
