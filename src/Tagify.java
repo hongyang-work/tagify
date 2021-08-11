@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -43,16 +44,30 @@ public class Tagify {
 
             if (isValidTag(subMessage)) {
                 Tag tag = toTag(subMessage);
-                tag.setRange(new Range(start, end));
+                Range range = new Range(message.length(), message.length() + tag.toString().length());
+                tag.setRange(range);
                 tags.add(tag);
-                message.insert(0, tag);
+                message.append(reverse(tag));
                 i -= dp[i] + 1;
             } else {
-                message.insert(0, s.charAt(i));
+                message.append(s.charAt(i));
                 i -= 1;
             }
         }
-        return message.toString();
+
+        reverseTagIndex(message.length());
+        return message.reverse().toString();
+    }
+
+    private void reverseTagIndex(int length) {
+        for (Tag tag : tags) {
+            Range range = tag.getRange();
+            int start = length - range.getEnd();
+            int end = length - range.getStart();
+            range.setStart(start);
+            range.setEnd(end);
+        }
+        Collections.reverse(tags);
     }
 
     private boolean isValidTag(String s) {
@@ -99,5 +114,9 @@ public class Tagify {
             }
         }
         return dp;
+    }
+
+    private String reverse(Object o) {
+        return new StringBuilder().append(o).reverse().toString();
     }
 }
