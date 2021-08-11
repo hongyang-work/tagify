@@ -24,8 +24,7 @@ public class Tag {
     @Override
     public boolean equals(Object tag) {
         if (tag == this) return true;
-        if (!(tag instanceof Tag)) return false;
-        Tag that = (Tag) tag;
+        if (!(tag instanceof Tag that)) return false;
         boolean isEqualPrefix = this.prefix.equals(that.prefix);
         boolean isEqualValue = this.value.equals(that.value);
         boolean isEqualRange = this.range.equals(that.range);
