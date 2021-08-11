@@ -9,7 +9,7 @@ public class Main {
         testCases.forEach((key, value) -> {
             String i = value.get("input");
             Tagify tagify = new Tagify(i);
-            String o = tagify.getProcessedText();
+            String o = tagify.getParsedText();
             String e = value.get("expected");
             String s = o.equals(e) ? "PASS" : "FAIL";
 

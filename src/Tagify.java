@@ -8,22 +8,21 @@ import java.util.Stack;
 public class Tagify {
 
     private final String rawText;
-    private final String processedText;
+    private final String parsedText;
     private final List<Tag> tags;
-
 
     public Tagify(String rawText) {
         this.tags = new ArrayList<>();
         this.rawText = rawText;
-        this.processedText = parse(rawText);
+        this.parsedText = parse(rawText);
     }
 
     public String getRawText() {
         return rawText;
     }
 
-    public String getProcessedText() {
-        return processedText;
+    public String getParsedText() {
+        return parsedText;
     }
 
     public List<Tag> getTags() {
@@ -42,27 +41,31 @@ public class Tagify {
             int end = i + 1;
             String subMessage = dp[i] > 0 ? s.substring(start, end) : "";
 
-            Tag tag = toTag(subMessage);
-            if (tag == null) {
-                message.insert(0, s.charAt(i));
-                i -= 1;
-            } else {
+            if (isValidTag(subMessage)) {
+                Tag tag = toTag(subMessage);
                 tag.setRange(new Range(start, end));
                 tags.add(tag);
                 message.insert(0, tag);
                 i -= dp[i] + 1;
+            } else {
+                message.insert(0, s.charAt(i));
+                i -= 1;
             }
         }
         return message.toString();
     }
 
-    private Tag toTag(String s) {
-        Gson gson = new Gson();
+    private boolean isValidTag(String s) {
         try {
-            return gson.fromJson(s, Tag[][].class)[0][0];
+            return toTag(s) != null;
         } catch (JsonSyntaxException | NullPointerException e) {
-           return null;
+            return false;
         }
+    }
+
+    private Tag toTag(String s) throws JsonSyntaxException, NullPointerException {
+        Gson gson = new Gson();
+        return gson.fromJson(s, Tag[][].class)[0][0];
     }
 
     // dynamic programming and stack approach
