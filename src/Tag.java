@@ -5,12 +5,22 @@ public class Tag {
     private String value;
     private Range range;
 
+
+
     public String getPrefix() {
         return this.prefix;
     }
 
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
     public String getValue() {
         return this.value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public Range getRange() {
@@ -24,7 +34,8 @@ public class Tag {
     @Override
     public boolean equals(Object tag) {
         if (tag == this) return true;
-        if (!(tag instanceof Tag that)) return false;
+        if (!(tag instanceof Tag)) return false;
+        Tag that = (Tag) tag;
         boolean isEqualPrefix = this.prefix.equals(that.prefix);
         boolean isEqualValue = this.value.equals(that.value);
         boolean isEqualRange = this.range.equals(that.range);

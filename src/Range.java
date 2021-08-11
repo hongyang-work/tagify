@@ -20,7 +20,8 @@ public class Range {
     @Override
     public boolean equals(Object range) {
         if (this == range) return true;
-        if (!(range instanceof Range that)) return false;
+        if (!(range instanceof Range)) return false;
+        Range that = (Range) range;
         return this.start == that.start && this.end == that.end;
     }
 
