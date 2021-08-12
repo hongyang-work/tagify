@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class Tagify {
 
@@ -28,6 +29,10 @@ public class Tagify {
 
     public List<Tag> getTags() {
         return tags;
+    }
+
+    public List<Range> getRanges() {
+        return tags.stream().map(Tag::getRange).collect(Collectors.toList());
     }
 
     private String parse(String s) {
