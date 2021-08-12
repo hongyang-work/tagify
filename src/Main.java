@@ -13,18 +13,20 @@ public class Main {
             Tagify tagify = new Tagify(i);
             String o = tagify.getParsedText();
             String e = value.get("expected");
-            String s = o.equals(e) ? "PASS" : "FAIL";
+            boolean s = o.equals(e);
             Timestamp end = new Timestamp(System.currentTimeMillis());
             long difference = end.getTime() - start.getTime();
 
-            if (s.equals("FAIL") || difference > 100) {
+            boolean showPass = false;
+            boolean showFail = true;
+            boolean showSlow = false;
+            if (showPass && s || showFail && !s || showSlow && difference > 100) {
                 System.out.println("Test case " + key);
-                System.out.println("length:\t\t\t" + i.length());
-                System.out.println("input:\t\t\t" + i);
+                System.out.println("input:\t\t\t" + (i != null ? i.length() : 0));
                 System.out.println("output:\t\t\t" + o);
                 System.out.println("expected:\t\t" + e);
-                System.out.println("status\t\t\t" + s);
                 System.out.println("time taken:\t\t" + difference);
+                System.out.println("status\t\t\t" + (s ? "PASS" : "FAIL"));
                 System.out.println();
             }
         });
