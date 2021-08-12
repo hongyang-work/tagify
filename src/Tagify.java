@@ -38,21 +38,11 @@ public class Tagify {
 
         int i = s.length() - 1;
         while (i >= 0) {
-            int start = i - dp[i];
-            int end = i + 1;
-            String subMessage = dp[i] > 0 ? s.substring(start, end) : "";
-
-            if (isValidTag(subMessage)) {
-                Tag tag = toTag(subMessage);
-                Range range = new Range(message.length(), message.length() + tag.length());
-                tag.setRange(range);
-                tags.add(tag);
-                message.append(reverse(tag));
-                i -= dp[i] + 1;
-            } else {
-                message.append(s.charAt(i));
-                i -= 1;
-            }
+            String subMessage = dp[i] > 0 ? s.substring(i - dp[i], i + 1) : "";
+            Tag tag = toTag(subMessage, message.length());
+            if (tag != null) this.tags.add(tag);
+            message.append( tag != null ? tag.reverse() : s.charAt(i) );
+            i -= tag != null ? dp[i] + 1 : 1;
         }
 
         reverseTagIndex(message.length());
@@ -78,9 +68,17 @@ public class Tagify {
         }
     }
 
-    private Tag toTag(String s) throws JsonSyntaxException, NullPointerException {
+    private Tag toTag(String s) {
         Gson gson = new Gson();
         return gson.fromJson(s, Tag[][].class)[0][0];
+    }
+
+    private Tag toTag(String s, int start) {
+        if (!isValidTag(s)) return null;
+        Tag tag = toTag(s);
+        Range range = new Range(start, start + tag.length());
+        tag.setRange(range);
+        return tag;
     }
 
     // dynamic programming and stack approach
@@ -114,9 +112,5 @@ public class Tagify {
             }
         }
         return dp;
-    }
-
-    private String reverse(Object o) {
-        return new StringBuilder().append(o).reverse().toString();
     }
 }
