@@ -51,6 +51,10 @@ public class Tag {
         return toString().length();
     }
 
+    public String reverse() {
+        return new StringBuilder().append(this.prefix).append(this.value).reverse().toString();
+    }
+
     @Override
     public boolean equals(Object tag) {
         if (tag == this) return true;
