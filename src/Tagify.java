@@ -44,7 +44,7 @@ public class Tagify {
 
             if (isValidTag(subMessage)) {
                 Tag tag = toTag(subMessage);
-                Range range = new Range(message.length(), message.length() + tag.toString().length());
+                Range range = new Range(message.length(), message.length() + tag.length());
                 tag.setRange(range);
                 tags.add(tag);
                 message.append(reverse(tag));

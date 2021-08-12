@@ -47,6 +47,10 @@ public class Tag {
         this.range = range;
     }
 
+    public int length() {
+        return toString().length();
+    }
+
     @Override
     public boolean equals(Object tag) {
         if (tag == this) return true;
